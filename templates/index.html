@@ -1,0 +1,133 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section" style="background-image: url('https://source.unsplash.com/1600x900/?grocery,supermarket');">
+    <div class="container">
+        <div class="hero-content text-white">
+            <h1 class="display-4 fw-bold mb-4">Welcome to Smart Grocery Cart</h1>
+            <p class="lead mb-5">Shop smarter with barcode scanning, easy checkout, and digital payments</p>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                <a href="/products" class="btn btn-primary btn-lg px-4 me-md-2">Browse Products</a>
+                <a href="/cart" class="btn btn-outline-light btn-lg px-4">View Cart</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="py-5">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="fw-bold">Smart Shopping Made Simple</h2>
+                <p class="lead text-muted">Our innovative features make grocery shopping efficient and enjoyable</p>
+            </div>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card feature-card h-100">
+                    <div class="card-body text-center p-4">
+                        <div class="feature-icon">
+                            <i class="fas fa-barcode"></i>
+                        </div>
+                        <h4>Barcode Scanning</h4>
+                        <p class="text-muted">Scan product barcodes with your camera to quickly add items to cart</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card feature-card h-100">
+                    <div class="card-body text-center p-4">
+                        <div class="feature-icon">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <h4>Smart Search</h4>
+                        <p class="text-muted">Find products instantly with our intelligent search suggestions</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card feature-card h-100">
+                    <div class="card-body text-center p-4">
+                        <div class="feature-icon">
+                            <i class="fas fa-qrcode"></i>
+                        </div>
+                        <h4>QR Payment</h4>
+                        <p class="text-muted">Quick checkout with QR code payment options for a hassle-free experience</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- How It Works Section -->
+<section class="py-5 bg-dark">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="fw-bold">How It Works</h2>
+                <p class="lead text-muted">Complete your shopping in three simple steps</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 text-center mb-4 mb-md-0">
+                <div class="rounded-circle bg-primary d-flex justify-content-center align-items-center mx-auto mb-4" style="width: 80px; height: 80px;">
+                    <h2 class="text-white m-0">1</h2>
+                </div>
+                <h4>Add Products</h4>
+                <p class="text-muted">Browse or scan products to add them to your cart</p>
+            </div>
+            <div class="col-md-4 text-center mb-4 mb-md-0">
+                <div class="rounded-circle bg-primary d-flex justify-content-center align-items-center mx-auto mb-4" style="width: 80px; height: 80px;">
+                    <h2 class="text-white m-0">2</h2>
+                </div>
+                <h4>Review Cart</h4>
+                <p class="text-muted">Adjust quantities and review your items before checkout</p>
+            </div>
+            <div class="col-md-4 text-center">
+                <div class="rounded-circle bg-primary d-flex justify-content-center align-items-center mx-auto mb-4" style="width: 80px; height: 80px;">
+                    <h2 class="text-white m-0">3</h2>
+                </div>
+                <h4>Quick Payment</h4>
+                <p class="text-muted">Use the QR code to complete your payment instantly</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Get Started Section -->
+<section class="py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                <h2 class="fw-bold mb-4">Ready to start shopping?</h2>
+                <p class="lead mb-4">Experience the future of grocery shopping today with our Smart Grocery Cart. Save time and enjoy a seamless shopping experience.</p>
+                <a href="/products" class="btn btn-primary btn-lg">Browse Products Now</a>
+            </div>
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-body p-4">
+                        <h4 class="mb-3">Quick Tips</h4>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <i class="fas fa-check-circle text-success me-2"></i> Use the camera icon to scan product barcodes
+                            </li>
+                            <li class="list-group-item">
+                                <i class="fas fa-check-circle text-success me-2"></i> Search for products by name or category
+                            </li>
+                            <li class="list-group-item">
+                                <i class="fas fa-check-circle text-success me-2"></i> Adjust quantities in the cart as needed
+                            </li>
+                            <li class="list-group-item">
+                                <i class="fas fa-check-circle text-success me-2"></i> Use any UPI app to scan payment QR code
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

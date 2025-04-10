@@ -1,0 +1,184 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="container py-5">
+    <h1 class="mb-4">Available Products</h1>
+    
+    <!-- Search and Barcode Section -->
+    <div class="row mb-5">
+        <div class="col-md-6 mb-4 mb-md-0">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Find Products</h5>
+                    <div class="mb-3 position-relative">
+                        <input type="text" id="product-search" class="form-control" placeholder="Search products by name or category...">
+                        <div id="search-suggestions" class="card"></div>
+                    </div>
+                    <p class="card-text text-muted">Start typing to see suggestions</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Scan Barcode</h5>
+                    <p class="card-text">Use your camera to scan product barcodes</p>
+                    <div id="barcode-scanner">
+                        <div class="text-center p-4">
+                            <p>Scanner is currently inactive</p>
+                        </div>
+                    </div>
+                    <div id="scan-result" class="alert alert-success" style="display: none;"></div>
+                    <div class="d-grid mt-3">
+                        <button id="toggle-scanner" class="btn btn-primary">Start Scanner</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Product Categories and Items -->
+    <div class="row">
+        <div class="col-md-3 mb-4">
+            <!-- Category Filter -->
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Categories</h5>
+                    <div class="list-group" id="category-filters">
+                        <button class="list-group-item list-group-item-action active" data-category="all">All Categories</button>
+                        <!-- Categories will be populated from JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="row g-4" id="product-list">
+                <!-- Products will be populated from JavaScript -->
+                <div class="col-12 text-center py-5">
+                    <div class="spinner-border" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <p class="mt-3">Loading products...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Load product data
+    fetch('/api/products')
+        .then(response => response.json())
+        .then(data => {
+            // Clear loading indicator
+            document.getElementById('product-list').innerHTML = '';
+            
+            // Display products
+            displayProducts(data.products);
+            
+            // Set up category filters
+            setupCategoryFilters(data.products);
+        })
+        .catch(error => {
+            console.error('Error loading products:', error);
+            document.getElementById('product-list').innerHTML = `
+                <div class="col-12">
+                    <div class="alert alert-danger" role="alert">
+                        Failed to load products. Please try refreshing the page.
+                    </div>
+                </div>
+            `;
+        });
+        
+    // Setup category filter behavior
+    document.getElementById('category-filters').addEventListener('click', function(e) {
+        if (e.target.classList.contains('list-group-item-action')) {
+            // Update active state
+            document.querySelectorAll('#category-filters .list-group-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            e.target.classList.add('active');
+            
+            // Filter products
+            const category = e.target.getAttribute('data-category');
+            filterProductsByCategory(category);
+        }
+    });
+});
+
+// Display products in the product list
+function displayProducts(products) {
+    const productList = document.getElementById('product-list');
+    
+    products.forEach(product => {
+        const productCol = document.createElement('div');
+        productCol.className = 'col-md-4 mb-4 product-item';
+        productCol.setAttribute('data-category', product.category.toLowerCase());
+        
+        productCol.innerHTML = `
+            <div class="card product-card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">${product.name}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">₹${product.price.toFixed(2)}</h6>
+                    <p class="card-text">
+                        <span class="badge bg-primary">${product.category}</span>
+                        <small class="text-muted d-block mt-2">Barcode: ${product.barcode}</small>
+                    </p>
+                </div>
+                <div class="card-footer bg-transparent border-top-0">
+                    <button class="btn btn-sm btn-primary w-100 add-to-cart-btn" data-product-id="${product.id}">
+                        <i class="fas fa-cart-plus me-2"></i> Add to Cart
+                    </button>
+                </div>
+            </div>
+        `;
+        
+        productList.appendChild(productCol);
+    });
+    
+    // Add event listeners for add to cart buttons
+    document.querySelectorAll('.add-to-cart-btn').forEach(button => {
+        button.addEventListener('click', function() {
+            const productId = parseInt(this.getAttribute('data-product-id'));
+            const product = products.find(p => p.id === productId);
+            
+            if (product) {
+                addToCart(product);
+            }
+        });
+    });
+}
+
+// Set up category filters
+function setupCategoryFilters(products) {
+    const categoryFilters = document.getElementById('category-filters');
+    
+    // Get unique categories
+    const categories = [...new Set(products.map(product => product.category))];
+    
+    // Add category buttons
+    categories.sort().forEach(category => {
+        const button = document.createElement('button');
+        button.className = 'list-group-item list-group-item-action';
+        button.setAttribute('data-category', category.toLowerCase());
+        button.textContent = category;
+        
+        categoryFilters.appendChild(button);
+    });
+}
+
+// Filter products by category
+function filterProductsByCategory(category) {
+    const productItems = document.querySelectorAll('.product-item');
+    
+    productItems.forEach(item => {
+        if (category === 'all' || item.getAttribute('data-category').toLowerCase() === category.toLowerCase()) {
+            item.style.display = '';
+        } else {
+            item.style.display = 'none';
+        }
+    });
+}
+</script>
+{% endblock %}

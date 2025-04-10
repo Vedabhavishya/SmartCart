@@ -1,0 +1,126 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="container py-5">
+    <h1 class="mb-4">Your Shopping Cart</h1>
+    
+    <div class="row">
+        <div class="col-lg-8">
+            <!-- Cart Items -->
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div id="empty-cart-message" style="display: none;">
+                        <div class="text-center py-5">
+                            <i class="fas fa-shopping-cart fa-4x mb-3 text-muted"></i>
+                            <h4>Your cart is empty</h4>
+                            <p class="text-muted">Add items to your cart to see them here</p>
+                            <a href="/products" class="btn btn-primary mt-3">Browse Products</a>
+                        </div>
+                    </div>
+                    
+                    <div id="cart-items">
+                        <!-- Cart items will be populated with JavaScript -->
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Quick Add Section -->
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Quick Add</h5>
+                    <div class="row">
+                        <div class="col-md-8 mb-3 mb-md-0">
+                            <input type="text" id="quick-add-search" class="form-control" placeholder="Search for a product...">
+                        </div>
+                        <div class="col-md-4">
+                            <a href="/products" class="btn btn-primary w-100">
+                                <i class="fas fa-search me-2"></i> Browse All Products
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-4">
+            <!-- Order Summary -->
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Order Summary</h5>
+                    
+                    <div class="d-flex justify-content-between mb-3">
+                        <span>Subtotal:</span>
+                        <span id="cart-total">₹0.00</span>
+                    </div>
+                    
+                    <div class="d-flex justify-content-between mb-3">
+                        <span>Shipping:</span>
+                        <span>Free</span>
+                    </div>
+                    
+                    <hr>
+                    
+                    <div class="d-flex justify-content-between mb-4">
+                        <strong>Total:</strong>
+                        <strong id="cart-final-total">₹0.00</strong>
+                    </div>
+                    
+                    <div class="d-grid gap-2">
+                        <button id="checkout-button" class="btn btn-success" disabled>
+                            <i class="fas fa-credit-card me-2"></i> Proceed to Payment
+                        </button>
+                        <button id="clear-cart-button" class="btn btn-outline-danger">
+                            <i class="fas fa-trash me-2"></i> Clear Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Help Box -->
+            <div class="card mt-4">
+                <div class="card-body">
+                    <h5 class="card-title">Need Help?</h5>
+                    <p class="card-text">If you have any questions about your order, feel free to contact us.</p>
+                    <div class="d-grid">
+                        <button class="btn btn-outline-secondary">
+                            <i class="fas fa-headset me-2"></i> Contact Support
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize quick add search
+    const quickAddSearch = document.getElementById('quick-add-search');
+    
+    if (quickAddSearch) {
+        quickAddSearch.addEventListener('keyup', function(e) {
+            if (e.key === 'Enter' && this.value.trim() !== '') {
+                window.location.href = `/products?search=${encodeURIComponent(this.value.trim())}`;
+            }
+        });
+    }
+    
+    // Update final total based on subtotal
+    const cartTotal = document.getElementById('cart-total');
+    const finalTotal = document.getElementById('cart-final-total');
+    
+    if (cartTotal && finalTotal) {
+        const updateFinalTotal = function() {
+            finalTotal.textContent = cartTotal.textContent;
+        };
+        
+        // Setup a MutationObserver to watch for changes to the cart total
+        const observer = new MutationObserver(updateFinalTotal);
+        observer.observe(cartTotal, { childList: true });
+        
+        // Initial update
+        updateFinalTotal();
+    }
+});
+</script>
+{% endblock %}

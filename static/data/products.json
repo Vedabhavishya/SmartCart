@@ -1,0 +1,144 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Milk 1L",
+      "price": 60.00,
+      "category": "Dairy",
+      "barcode": "8901030658853"
+    },
+    {
+      "id": 2,
+      "name": "Bread - Whole Wheat",
+      "price": 40.00,
+      "category": "Bakery",
+      "barcode": "8901725121938"
+    },
+    {
+      "id": 3,
+      "name": "Rice - Basmati 1kg",
+      "price": 85.00,
+      "category": "Grains",
+      "barcode": "8901725110901"
+    },
+    {
+      "id": 4,
+      "name": "Tomatoes 500g",
+      "price": 30.00,
+      "category": "Vegetables",
+      "barcode": "8901030116278"
+    },
+    {
+      "id": 5,
+      "name": "Potatoes 1kg",
+      "price": 35.00,
+      "category": "Vegetables",
+      "barcode": "8901030417628"
+    },
+    {
+      "id": 6,
+      "name": "Onions 1kg",
+      "price": 28.00,
+      "category": "Vegetables",
+      "barcode": "8901030417635"
+    },
+    {
+      "id": 7,
+      "name": "Cooking Oil 1L",
+      "price": 120.00,
+      "category": "Cooking Essentials",
+      "barcode": "8901030610288"
+    },
+    {
+      "id": 8,
+      "name": "Sugar 1kg",
+      "price": 45.00,
+      "category": "Cooking Essentials",
+      "barcode": "8901052013511"
+    },
+    {
+      "id": 9,
+      "name": "Toothpaste 100g",
+      "price": 95.00,
+      "category": "Personal Care",
+      "barcode": "8901030704888"
+    },
+    {
+      "id": 10,
+      "name": "Soap Bar 125g",
+      "price": 30.00,
+      "category": "Personal Care",
+      "barcode": "8901030707964"
+    },
+    {
+      "id": 11,
+      "name": "Shampoo 200ml",
+      "price": 160.00,
+      "category": "Personal Care",
+      "barcode": "8901030704901"
+    },
+    {
+      "id": 12,
+      "name": "Eggs 6-pack",
+      "price": 65.00,
+      "category": "Dairy",
+      "barcode": "8901030172570"
+    },
+    {
+      "id": 13,
+      "name": "Chicken 500g",
+      "price": 180.00,
+      "category": "Meat",
+      "barcode": "8901030183026"
+    },
+    {
+      "id": 14,
+      "name": "Fish 500g",
+      "price": 220.00,
+      "category": "Seafood",
+      "barcode": "8901030183033"
+    },
+    {
+      "id": 15,
+      "name": "Apples 1kg",
+      "price": 140.00,
+      "category": "Fruits",
+      "barcode": "8901030419622"
+    },
+    {
+      "id": 16,
+      "name": "Bananas 1kg",
+      "price": 60.00,
+      "category": "Fruits",
+      "barcode": "8901030419639"
+    },
+    {
+      "id": 17,
+      "name": "Tea 250g",
+      "price": 110.00,
+      "category": "Beverages",
+      "barcode": "8901058850826"
+    },
+    {
+      "id": 18,
+      "name": "Coffee 100g",
+      "price": 180.00,
+      "category": "Beverages",
+      "barcode": "8901063001807"
+    },
+    {
+      "id": 19,
+      "name": "Biscuits 250g",
+      "price": 45.00,
+      "category": "Snacks",
+      "barcode": "8901063020143"
+    },
+    {
+      "id": 20,
+      "name": "Chips 100g",
+      "price": 40.00,
+      "category": "Snacks",
+      "barcode": "8901491004183"
+    }
+  ]
+}
